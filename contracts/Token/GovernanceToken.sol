@@ -1,5 +1,5 @@
 pragma solidity ^0.8.0;
-import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
+import "./ERC20Votes.sol";
 
 contract GovernanceToken is ERC20Votes{
     uint public maxSupply =21000000 * 10**18;
