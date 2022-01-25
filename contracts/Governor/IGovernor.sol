@@ -19,7 +19,7 @@ abstract contract IGovernor is IERC165{
         Executed
     }
 
-    //TODO find out waht values and calldatas are here
+    //values are ether amounts to send in the call and calldatas are a combination of function signature and data to pass
     event ProposalCreated(
         uint256 proposalId,
         address proposer,
@@ -35,7 +35,6 @@ abstract contract IGovernor is IERC165{
     event ProposalCanceled(uint256 proposalId);
     event ProposalExecuted(uint256 proposalId);
 
-    //Not too clear on what support and weight values mean here...
     //TODO findout what support and weight values mean
     event VoteCast(address indexed voter, uint256 proposalId, uint8 support, uint256 weight, string reason);
 
@@ -51,7 +50,6 @@ abstract contract IGovernor is IERC165{
     function COUNTING_MODE() public pure virtual returns (string memory);
 
     //Returns proposal id based on proposal details
-    // TODO find out what values and calldatas mean
     function hashProposal(
         address[] calldata targets,
         uint256[] calldata values,
@@ -85,7 +83,6 @@ abstract contract IGovernor is IERC165{
     function hasVoted(uint256 proposalId, address account) public view virtual returns(bool);
 
     // Create a new proposal , emits proposalcreated event
-    //TODO find out what values and calldatas mean
     function propose(
         address[] memory targets,
         uint256[] memory values,
@@ -94,7 +91,7 @@ abstract contract IGovernor is IERC165{
     ) public virtual returns (uint256 proposalId);
 
     //execute a successful proposal , emits proposalexecuted event
-    //TODO find out what is supposed to call this function and why it is payable
+    //This call will actually execute the methods at the specified targets, with ether values and calldatas specified
     function execute(
         address[] memory targets,
         uint256[] memory values,
@@ -124,4 +121,5 @@ abstract contract IGovernor is IERC165{
         bytes32 s
     ) public virtual returns (uint256 balance);
 
+    
 }
