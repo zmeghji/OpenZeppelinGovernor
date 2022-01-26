@@ -219,7 +219,7 @@ abstract contract ERC20Votes is ERC20Permit {
         require(totalSupply() <= _maxSupply(), "ERC20Votes: total supply risks overflowing votes");
 
         _writeCheckpoint(_totalSupplyCheckpoints, _add, amount);
-        //TODO don't we also need to write to the checkpoint of the address which receives the minted token or is that already done in super.mint()
+        //TODO don't we also need to write to the checkpoint of the address which receives the minted token or is that already done in super.mint()?
     }
 
     /**

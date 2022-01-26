@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/governance/extensions/GovernorCountingSimple.sol
 import "@openzeppelin/contracts/governance/extensions/GovernorVotes.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFraction.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol";
+import "hardhat/console.sol";
 
 contract MyGovernor is 
     Governor, GovernorCountingSimple, 
@@ -22,7 +23,7 @@ contract MyGovernor is
         return 1; // 1 block
     }
     function votingPeriod() public pure override returns (uint256) {
-        return 45818; // 1 week
+        return 5; // 1 week
     }
 
     function quorum(uint256 blockNumber)

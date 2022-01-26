@@ -17,6 +17,7 @@ import "@openzeppelin/contracts/utils/Context.sol";
 //TODO look into how the timers library works a bit more
 import "@openzeppelin/contracts/utils/Timers.sol";
 import "./IGovernor.sol";
+import "hardhat/console.sol";
 
 abstract contract Governor is Context, ERC165, EIP712, IGovernor {
     using SafeCast for uint256;
@@ -36,7 +37,7 @@ abstract contract Governor is Context, ERC165, EIP712, IGovernor {
     string private _name;
 
     //proposal id to Proposal mapping
-    mapping(uint256 => ProposalCore) private _proposals;
+    mapping(uint256 => ProposalCore) public _proposals;
 
     //modifier which only allows the executor to execute function
     modifier onlyGovernance() {
@@ -185,7 +186,8 @@ abstract contract Governor is Context, ERC165, EIP712, IGovernor {
         );
 
         uint256 proposalId = hashProposal(targets, values, calldatas, keccak256(bytes(description)));
-
+        console.log("Proposal Id");
+        console.log(proposalId);
         require(targets.length == values.length, "Governor: invalid proposal length");
         require(targets.length == calldatas.length, "Governor: invalid proposal length");
         require(targets.length > 0, "Governor: empty proposal");
